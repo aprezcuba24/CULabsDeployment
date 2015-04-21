@@ -1,5 +1,4 @@
 {
-    "minimum-stability": "dev",
     "name": "culabs/deployment",
     "description": "System for deployment Symfony application",
     "keywords": ["symfony"],
@@ -15,17 +14,17 @@
         "psr-4": { "CULabs\\": "src/" }
     },
     "require": {
-        "symfony/dependency-injection": "3.0.*@dev",
-        "symfony/config": "3.0.*@dev",
-        "symfony/console": "3.0.*@dev",
-        "guzzle/guzzle": "3.9.*@dev",
-        "symfony/filesystem": "3.0.*@dev",
-        "symfony/yaml": "3.0.*@dev",
-        "symfony/process": "3.0.*@dev",
-        "symfony/finder": "3.0.*@dev",
-        "symfony/templating": "3.0.*@dev",
-        "symfony/twig-bridge": "3.0.*@dev",
-        "symfony/options-resolver": "3.0.*@dev"
+        "symfony/dependency-injection": "3.0.*",
+        "symfony/config": "3.0.*",
+        "symfony/console": "3.0.*",
+        "guzzle/guzzle": "3.9.*",
+        "symfony/filesystem": "3.0.*",
+        "symfony/yaml": "3.0.*",
+        "symfony/process": "3.0.*",
+        "symfony/finder": "3.0.*",
+        "symfony/templating": "3.0.*",
+        "symfony/twig-bridge": "3.0.*",
+        "symfony/options-resolver": "3.0.*"
     },
     "bin": ["culabs-deployment"]
 }

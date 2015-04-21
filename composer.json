@@ -1,0 +1,31 @@
+{
+    "minimum-stability": "dev",
+    "name": "culabs/deployment",
+    "description": "System for deployment Symfony application",
+    "keywords": ["symfony"],
+    "homepage": "http://deployment.culabs.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Renier Ricardo Figueredo",
+            "email": "aprezcuba24@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "CULabs\\": "src/" }
+    },
+    "require": {
+        "symfony/dependency-injection": "3.0.*@dev",
+        "symfony/config": "3.0.*@dev",
+        "symfony/console": "3.0.*@dev",
+        "guzzle/guzzle": "3.9.*@dev",
+        "symfony/filesystem": "3.0.*@dev",
+        "symfony/yaml": "3.0.*@dev",
+        "symfony/process": "3.0.*@dev",
+        "symfony/finder": "3.0.*@dev",
+        "symfony/templating": "3.0.*@dev",
+        "symfony/twig-bridge": "3.0.*@dev",
+        "symfony/options-resolver": "3.0.*@dev"
+    },
+    "bin": ["culabs-deployment"]
+}

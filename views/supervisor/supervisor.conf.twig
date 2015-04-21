@@ -1,0 +1,7 @@
+[program:{{ key }}]
+environment={% for key, value in vars_environment %}{{ key }}="{{ value }}"{% if not loop.last %},{% endif %}{% endfor %}
+
+command={{ command }}
+{% for key, value in options %}
+{{ key }}={{ value }}
+{% endfor %}

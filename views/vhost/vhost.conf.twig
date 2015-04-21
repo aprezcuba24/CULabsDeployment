@@ -1,0 +1,18 @@
+<VirtualHost *:{{ port }}>
+    ServerName {{ ServerName }}
+    DirectoryIndex {{ DirectoryIndex }}
+
+{% for set_env, value in SetEnv %}
+    SetEnv {{ set_env }} {{ value }}
+{% endfor %}
+
+    DocumentRoot {{ DocumentRoot }}
+    <Directory {{ DocumentRoot }}>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/{{ ServerName }}-error.log
+    CustomLog ${APACHE_LOG_DIR}/{{ ServerName }}-access.log combined
+</VirtualHost>

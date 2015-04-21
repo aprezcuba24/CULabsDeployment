@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * @author: Renier Ricardo Figueredo
+ * @mail: aprezcuba24@gmail.com
+ */
+
+if (PHP_VERSION_ID < 50400) {
+    file_put_contents('php://stderr', sprintf(
+        "CULabs Deployment requires PHP 5.4 version or higher and your system has\n".
+        "PHP %s version installed.\n\n".
+        "To solve this issue, upgrade your PHP installation\n",
+        PHP_VERSION
+    ));
+
+    exit(1);
+}
+
+require file_exists(__DIR__.'/vendor/autoload.php')
+    ? __DIR__.'/vendor/autoload.php'
+    : __DIR__.'/../../autoload.php';
+
+$appVersion = '1.1.1-DEV';
+
+// Windows uses Path instead of PATH
+if (!isset($_SERVER['PATH']) && isset($_SERVER['Path'])) {
+    $_SERVER['PATH'] = $_SERVER['Path'];
+}
+
+$app = new Symfony\Component\Console\Application('CULabs Deployment', $appVersion);
+$app->add(new CULabs\Command\DeploymentCommand());
+
+$app->run();

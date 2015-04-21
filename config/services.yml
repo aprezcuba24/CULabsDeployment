@@ -1,0 +1,28 @@
+parameters:
+    vhost_executor.class: CULabs\Executor\Instances\VHostExecutor
+    supervisor_executor.class: CULabs\Executor\Instances\SupervisorExecutor
+    command_executor.class: CULabs\Executor\Instances\CommandExecutor
+    pagomio_message.class: CULabs\Executor\Instances\PagomioMessageExecutor
+
+services:
+    vhost:
+        class: %vhost_executor.class%
+        scope: prototype
+        calls:
+            - [setTemplating, ["@templating"]]
+
+    supervisor:
+        class: %supervisor_executor.class%
+        scope: prototype
+        calls:
+            - [setTemplating, ["@templating"]]
+
+    command:
+        class: %command_executor.class%
+        scope: prototype
+
+    templating:
+        class: Symfony\Bridge\Twig\TwigEngine
+        factory: [CULabs\Deployment\Factories\TwigEngineFactory, create]
+        arguments:
+            - %ROOT_DIR%/views

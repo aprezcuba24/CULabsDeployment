@@ -17,11 +17,7 @@ use Symfony\Component\Process\Process;
 
 class VHostExecutor extends Executor
 {
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function up(InputInterface $input, OutputInterface $output)
+    public function up()
     {
         $content = $this->getContent();
         $fs = new Filesystem();
@@ -30,11 +26,7 @@ class VHostExecutor extends Executor
         $this->reloadApache();
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function update(InputInterface $input, OutputInterface $output)
+    public function update()
     {
         $fs = new Filesystem();
         $content = $this->getContent();
@@ -42,11 +34,7 @@ class VHostExecutor extends Executor
         $this->reloadApache();
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function down(InputInterface $input, OutputInterface $output)
+    public function down()
     {
         $this->disabledSite();
         $fs = new Filesystem();
@@ -111,10 +99,8 @@ class VHostExecutor extends Executor
 
     /**
      * @param $direction
-     * @param OutputInterface $output
-     * @return string
      */
-    public function printComment($direction, OutputInterface $output)
+    public function printComment($direction)
     {
         $action = 'create';
         if ($direction == DeploymentInterface::DIRECTION_UPDATE) {
@@ -123,6 +109,6 @@ class VHostExecutor extends Executor
         if ($direction == DeploymentInterface::DIRECTION_DOWN) {
             $action = 'remove';
         }
-        $output->writeln(sprintf('<info>vhost:</info> <fg=cyan>%s</fg=cyan> <fg=yellow>%s</fg=yellow>', $action, $this->getVhostConfigFilePath()));
+        $this->writeln(sprintf('<info>vhost:</info> <fg=cyan>%s</fg=cyan> <fg=yellow>%s</fg=yellow>', $action, $this->getVhostConfigFilePath()));
     }
 } 

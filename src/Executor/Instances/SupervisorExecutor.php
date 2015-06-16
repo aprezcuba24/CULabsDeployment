@@ -16,11 +16,7 @@ use Symfony\Component\Process\Process;
 
 class SupervisorExecutor extends Executor
 {
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function up(InputInterface $input, OutputInterface $output)
+    public function up()
     {
         $fs = new Filesystem();
         $file_name = $this->options['filename'];
@@ -40,20 +36,12 @@ class SupervisorExecutor extends Executor
         $this->restartSupervisor();
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function update(InputInterface $input, OutputInterface $output)
+    public function update()
     {
-        $this->up($input, $output);
+        $this->up();
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function down(InputInterface $input, OutputInterface $output)
+    public function down()
     {
         $fs = new Filesystem();
         $fs->remove($this->options['filename']);
@@ -90,10 +78,8 @@ class SupervisorExecutor extends Executor
 
     /**
      * @param $direction
-     * @param OutputInterface $output
-     * @return string
      */
-    public function printComment($direction, OutputInterface $output)
+    public function printComment($direction)
     {
         $action = 'create';
         if ($direction == DeploymentInterface::DIRECTION_UPDATE) {
@@ -102,6 +88,6 @@ class SupervisorExecutor extends Executor
         if ($direction == DeploymentInterface::DIRECTION_DOWN) {
             $action = 'remove';
         }
-        $output->writeln(sprintf('<info>supervisor:</info> <fg=cyan>%s</fg=cyan> <fg=yellow>%s</fg=yellow>', $action, $this->options['filename']));
+        $this->writeln(sprintf('<info>supervisor:</info> <fg=cyan>%s</fg=cyan> <fg=yellow>%s</fg=yellow>', $action, $this->options['filename']));
     }
 }

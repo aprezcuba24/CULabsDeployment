@@ -28,7 +28,11 @@ class DeploymentCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $deployment = new Deployment();
-        $deployment->execute($input, $output);
+        $dir_path  = getcwd().DIRECTORY_SEPARATOR.$input->getOption('config-path');
+        $dir_file  = $input->getOption('config-file');
+        $direction = $input->getArgument('direction');
+
+        $deployment = new Deployment($dir_path, $dir_file, $output);
+        $deployment->execute($direction);
     }
 } 

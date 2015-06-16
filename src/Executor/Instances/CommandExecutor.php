@@ -14,32 +14,20 @@ use Symfony\Component\Process\Process;
 
 class CommandExecutor extends Executor
 {
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function up(InputInterface $input, OutputInterface $output)
+    public function up()
     {
         $process = new Process($this->options['command'], $this->options['cwd'], $this->options['env']);
         $process->run();
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function update(InputInterface $input, OutputInterface $output)
+    public function update()
     {
-        $this->up($input, $output);
+        $this->up();
     }
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function down(InputInterface $input, OutputInterface $output)
+    public function down()
     {
-        $this->up($input, $output);
+        $this->up();
     }
 
     protected function setOptions(OptionsResolver $resolver, $direction)
@@ -55,11 +43,9 @@ class CommandExecutor extends Executor
 
     /**
      * @param $direction
-     * @param OutputInterface $output
-     * @return string
      */
-    public function printComment($direction, OutputInterface $output)
+    public function printComment($direction)
     {
-        $output->writeln(sprintf('<info>command:</info> <fg=cyan>execute</fg=cyan> <fg=yellow>%s</fg=yellow>', $this->options['command']));
+        $this->writeln(sprintf('<info>command:</info> <fg=cyan>execute</fg=cyan> <fg=yellow>%s</fg=yellow>', $this->options['command']));
     }
 }

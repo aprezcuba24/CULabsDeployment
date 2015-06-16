@@ -14,31 +14,18 @@ interface ExecutorInterface
     /**
      * @param $options
      * @param $direction
-     */
-    public function configure($options, $direction);
-
-    /**
-     * @param InputInterface $input
      * @param OutputInterface $output
      */
-    public function up(InputInterface $input, OutputInterface $output);
+    public function configure($options, $direction, OutputInterface $output = null);
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function down(InputInterface $input, OutputInterface $output);
+    public function up();
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     */
-    public function update(InputInterface $input, OutputInterface $output);
+    public function down();
+
+    public function update();
 
     /**
      * @param $direction
-     * @param OutputInterface $output
-     * @return string
      */
-    public function printComment($direction, OutputInterface $output);
+    public function printComment($direction);
 }

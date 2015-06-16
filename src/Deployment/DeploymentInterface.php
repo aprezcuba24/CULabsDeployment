@@ -17,8 +17,7 @@ interface DeploymentInterface
     const DIRECTION_BATCH  = 'batch';
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
+     * @param $direction
      */
-    public function execute(InputInterface $input, OutputInterface $output);
+    public function execute($direction);
 }

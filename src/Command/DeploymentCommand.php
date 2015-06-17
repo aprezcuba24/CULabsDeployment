@@ -21,7 +21,7 @@ class DeploymentCommand extends Command
             ->setName('deployment')
             ->setDescription('Deployment application')
             ->addArgument('direction', InputArgument::OPTIONAL, 'The direction of deployment')
-            ->addOption('config-path', 'cp', InputArgument::OPTIONAL, 'Path of config file', 'deployment')
+            ->addOption('config-path', 'cp', InputArgument::OPTIONAL, 'Path of config file', 'deployment'.DIRECTORY_SEPARATOR)
             ->addOption('config-file', 'cf', InputArgument::OPTIONAL, 'Config file', 'config.yml')
         ;
     }

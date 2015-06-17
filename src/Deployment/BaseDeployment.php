@@ -72,13 +72,13 @@ abstract class BaseDeployment implements DeploymentInterface
             if (!$executor instanceof ExecutorInterface) {
                 throw new \InvalidArgumentException(sprintf('%s must be instance of CULabs\Executor\ExecutorInterface', $id));
             }
-            $executor->configure($config, $direction);
+            $executor->configure($config, $direction, $this->output);
             $executors[] = $executor;
         }
         /**@var $executor ExecutorInterface*/
         foreach ($executors as $executor) {
-            $executor->printComment($direction, $this->output);
-            $executor->$direction($this->input, $this->output);
+            $executor->printComment($direction);
+            $executor->$direction();
         }
     }
 

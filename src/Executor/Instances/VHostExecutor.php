@@ -90,10 +90,11 @@ class VHostExecutor extends Executor
                 'DirectoryIndex'       => 'app.php',
                 'apache2-sites-config' => '/etc/apache2/sites-available/'
             ])
-            ->setRequired('ServerName')
         ;
         if (in_array($direction, [DeploymentInterface::DIRECTION_UP, DeploymentInterface::DIRECTION_UPDATE])) {
-            $resolver->setRequired('DocumentRoot');
+            $resolver->setRequired(['DocumentRoot', 'ServerName']);
+        } else {
+            $resolver->setRequired(['ServerName']);
         }
     }
 

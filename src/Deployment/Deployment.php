@@ -19,10 +19,10 @@ class Deployment extends BaseDeployment
 
     public function __construct($configPath, $configFile, OutputInterface $output)
     {
-        parent::__construct($output);
-
         $this->configPath = $configPath;
         $this->configFile = $configFile;
+
+        parent::__construct($output);
     }
 
     protected function customBuildContainer(ContainerBuilder $containerBuilder)

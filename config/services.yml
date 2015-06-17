@@ -21,8 +21,12 @@ services:
         class: %command_executor.class%
         scope: prototype
 
+    templating_factory:
+        class: CULabs\Deployment\Factories\TwigEngineFactory
+
     templating:
         class: Symfony\Bridge\Twig\TwigEngine
-        factory: [CULabs\Deployment\Factories\TwigEngineFactory, create]
+        factory_service: templating_factory
+        factory_method:  create
         arguments:
             - %ROOT_DIR%/views

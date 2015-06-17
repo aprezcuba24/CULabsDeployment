@@ -33,7 +33,7 @@ abstract class BaseDeployment implements DeploymentInterface
      * @param InputInterface  $input
      * @param OutputInterface $output
      */
-    public function __construct(OutputInterface $output)
+    public function __construct(OutputInterface $output = null)
     {
         $this->output    = $output;
         $this->container = $this->buildContainer();

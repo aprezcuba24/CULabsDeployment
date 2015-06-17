@@ -86,6 +86,7 @@ abstract class BaseDeployment implements DeploymentInterface
     {
         $container = new ContainerBuilder();
         $container->registerExtension(new DeploymentContainerExtension());
+        $container->setParameter('ROOT_DIR', __DIR__.'/../..');
         $container->setParameter('APP_DIR', $this->getAppDir());
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../config'));

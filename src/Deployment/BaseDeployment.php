@@ -86,7 +86,6 @@ abstract class BaseDeployment implements DeploymentInterface
     {
         $container = new ContainerBuilder();
         $container->registerExtension(new DeploymentContainerExtension());
-        $container->setParameter('ROOT_DIR', $this->getRootDir());
         $container->setParameter('APP_DIR', $this->getAppDir());
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
@@ -100,11 +99,6 @@ abstract class BaseDeployment implements DeploymentInterface
     }
 
     protected abstract function customBuildContainer(ContainerBuilder $containerBuilder);
-
-    /**
-     * @return String
-     */
-    protected abstract function getRootDir();
 
     /**
      * @return String

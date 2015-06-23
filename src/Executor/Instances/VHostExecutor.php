@@ -44,7 +44,7 @@ class VHostExecutor extends Executor
 
     protected function getContent()
     {
-        return $this->render('vhost/vhost.conf.twig', [
+        return $this->render($this->options['template'], [
             'port'           => $this->options['port'],
             'ServerName'     => $this->options['ServerName'],
             'DirectoryIndex' => $this->options['DirectoryIndex'],
@@ -88,7 +88,8 @@ class VHostExecutor extends Executor
                 'SetEnv'               => [],
                 'port'                 => 80,
                 'DirectoryIndex'       => 'app.php',
-                'apache2-sites-config' => '/etc/apache2/sites-available/'
+                'apache2-sites-config' => '/etc/apache2/sites-available/',
+                'template'             => 'vhost/base_vhost.conf.twig',
             ])
         ;
         if (in_array($direction, [DeploymentInterface::DIRECTION_UP, DeploymentInterface::DIRECTION_UPDATE])) {

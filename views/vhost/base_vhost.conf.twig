@@ -2,9 +2,11 @@
     ServerName {{ ServerName }}
     DirectoryIndex {{ DirectoryIndex }}
 
-{% for set_env, value in SetEnv %}
-    SetEnv {{ set_env }} {{ value }}
-{% endfor %}
+{% block env_block %}
+    {% for set_env, value in SetEnv %}
+        SetEnv {{ set_env }} {{ value }}
+    {% endfor %}
+{% endblock %}
 
     DocumentRoot {{ DocumentRoot }}
     <Directory {{ DocumentRoot }}>
@@ -13,6 +15,10 @@
         Require all granted
     </Directory>
 
+{% block logs_block %}
     ErrorLog ${APACHE_LOG_DIR}/{{ ServerName }}-error.log
     CustomLog ${APACHE_LOG_DIR}/{{ ServerName }}-access.log combined
+{% endblock %}
+
+{% block extra_block %}{% endblock %}
 </VirtualHost>

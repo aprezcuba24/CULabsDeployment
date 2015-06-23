@@ -3,6 +3,7 @@ parameters:
     supervisor_executor.class: CULabs\Executor\Instances\SupervisorExecutor
     command_executor.class: CULabs\Executor\Instances\CommandExecutor
     pagomio_message.class: CULabs\Executor\Instances\PagomioMessageExecutor
+    templating_views_paths: []
 
 services:
     vhost:
@@ -30,3 +31,4 @@ services:
         factory_method:  create
         arguments:
             - %ROOT_DIR%/views
+            - %templating_views_paths%

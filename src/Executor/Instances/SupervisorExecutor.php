@@ -26,7 +26,7 @@ class SupervisorExecutor extends Executor
             $content  = file_get_contents($file_name);
             $content .= "\n";
         }
-        $content .= $this->render('supervisor/supervisor.conf.twig', [
+        $content .= $this->render($this->options['template'], [
             'key'              => $this->options['key'],
             'vars_environment' => $this->options['vars_environment'],
             'command'          => $this->options['command'],
@@ -65,6 +65,7 @@ class SupervisorExecutor extends Executor
                 'restart_supervisor' => false,
                 'options'            => [],
                 'vars_environment'   => [],
+                'template'           => 'supervisor/base_supervisor.conf.twig',
             ])
             ->setRequired(['filename'])
         ;

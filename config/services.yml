@@ -27,8 +27,7 @@ services:
 
     templating:
         class: Symfony\Bridge\Twig\TwigEngine
-        factory_service: templating_factory
-        factory_method:  create
+        factory: [CULabs\Deployment\Factories\TwigEngineFactory, create]
         arguments:
             - %ROOT_DIR%/views
             - %templating_views_paths%
